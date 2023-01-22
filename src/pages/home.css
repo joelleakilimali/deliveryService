@@ -1,3 +1,15 @@
 .btn:hover {
   background-color: rgb(7 89 133);
 }
+.news {
+  width: 50%;
+}
+.centreColum {
+  align-items: center;
+}
+.detailnews {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
