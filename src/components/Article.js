@@ -1,6 +1,6 @@
 import React from "react";
 import "./article.css";
-function Article({ imag, prix, date }) {
+function Article({ imag, prix, date, title }) {
   return (
     <div>
       <div>
@@ -9,8 +9,9 @@ function Article({ imag, prix, date }) {
           <div className="detail">
             <h5 className="text-sm">Prix: ${prix}</h5>
             <h6 className="text-sm">Date d'expiration : {date}</h6>
+            <h6>{title}</h6>
           </div>
-          <button className="btn py-1  ml-2 my-4 w-24 bg-sky-900 border-gray-400 rounded-3xl text-white border-2 ">
+          <button className="btnarticle  py-1  ml-2 my-4 w-24 bg-whitey  border-gray-300 text-black rounded-3xl  border-2  ">
             Ajouter
           </button>
         </div>

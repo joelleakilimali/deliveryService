@@ -1,3 +1,13 @@
 .footcont {
   background-color: rgb(12 74 110);
 }
+.centerRow {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+.spaceleftOver:hover {
+  margin-left: 20px;
+}

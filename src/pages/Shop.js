@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Box from "../components/Box";
 import Article from "../components/Article";
+import Carte from "../components/Carte";
 
 function Shop() {
   return (
@@ -106,11 +107,26 @@ function Shop() {
             </div>
           </div>
         </div>
-        <div className="flex mt-20 text-3xl justify-center">
-          <h2 className=" bg-blue-400 rounded-xl text-white p-3">
-            Les Categories
-          </h2>
+        {}
+        <div>
+          <div className="flex mt-16 text-3xl justify-center">
+            <h2 className=" bg-blue-400 rounded-xl text-white p-3">
+              Les Produits
+            </h2>
+          </div>
         </div>
+        <div className="flex  flex-row">
+          <div className="flex flex-row flex-wrap">
+            <Carte img="./assets/viande.jpg" title="Boucheries" />
+          </div>
+          <div className="flex flex-row flex-wrap">
+            <Carte img="./assets/patisseries.jpg" title="Patisseries" />
+          </div>
+          <div className="flex flex-row flex-wrap">
+            <Carte img="./assets/jus.jpeg" title="Jus de fruits" />
+          </div>
+        </div>
+        {}
       </div>
     </div>
   );

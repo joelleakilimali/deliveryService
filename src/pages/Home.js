@@ -97,12 +97,12 @@ function Home() {
                 </div>
                 <div className=" detailnews  p-3 ">
                   <div className=" flex flex-row  ">
-                    <FaUserAlt />
-                    <h5>Par Justine</h5>
+                    <FaUserAlt className=" mt-1 " />
+                    <h5 className=" mx-2 ">Par Justine</h5>
                   </div>
                   <div div className=" flex flex-row ">
-                    <AiFillCalendar />
-                    <h5>02 Janvier 2023</h5>
+                    <AiFillCalendar className=" mt-1 " />
+                    <h5 className=" mx-2 ">02 Janvier 2023</h5>
                   </div>
                 </div>
                 <div>
@@ -129,12 +129,15 @@ function Home() {
                 </div>
                 <div className=" detailnews  p-3 ">
                   <div className=" flex flex-row  ">
-                    <FaUserAlt />
-                    <h5>Par Justine</h5>
+                    <FaUserAlt className="mt-1" />
+                    <h5 className=" mx-2 ">Par Justine</h5>
                   </div>
-                  <div div className=" flex flex-row ">
-                    <AiFillCalendar />
-                    <h5>02 Janvier 2023</h5>
+                  <div
+                    div
+                    className=" flex flex-row align-middle justify-center "
+                  >
+                    <AiFillCalendar className="mt-1" />
+                    <h5 className=" mx-2 ">02 Janvier 2023</h5>
                   </div>
                 </div>
                 <div>
