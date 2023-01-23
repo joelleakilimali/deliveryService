@@ -9,6 +9,9 @@
   border: 1px solid gray;
   box-shadow: 5px 10px 8px #888888;
 }
+.article:hover {
+  border: 3px solid rgba(227, 139, 139, 0.618);
+}
 .btnarticle:hover {
   background-color: #60a5fa;
 }

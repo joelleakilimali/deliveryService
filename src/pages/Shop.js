@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import Box from "../components/Box";
 import Article from "../components/Article";
 import Carte from "../components/Carte";
+import Footer from "../components/Footer";
 
 function Shop() {
   return (
@@ -109,13 +110,13 @@ function Shop() {
         </div>
         {}
         <div>
-          <div className="flex mt-16 text-3xl justify-center">
+          <div className="flex mt-12 text-3xl justify-center">
             <h2 className=" bg-blue-400 rounded-xl text-white p-3">
               Les Produits
             </h2>
           </div>
         </div>
-        <div className="flex  flex-row">
+        <div className="flex  flex-row m-4">
           <div className="flex flex-row flex-wrap">
             <Carte img="./assets/viande.jpg" title="Boucheries" />
           </div>
@@ -125,8 +126,12 @@ function Shop() {
           <div className="flex flex-row flex-wrap">
             <Carte img="./assets/jus.jpeg" title="Jus de fruits" />
           </div>
+          <div className="flex flex-row flex-wrap">
+            <Carte img="./assets/deo.jpg" title="Parfums et Deo" />
+          </div>
         </div>
         {}
+        <Footer />
       </div>
     </div>
   );
