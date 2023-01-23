@@ -44,34 +44,40 @@ function Home() {
             </h2>
           </div>
           <div className="flex flex-row flex-wrap px-10 py-5 mx-5">
-            <div className="w-[30%]">
+            <div className="w-[30%] px-5">
               <Box
                 img="../assets/kin-marché.png"
                 title="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
               />
             </div>
-            <div className="w-[35%] px-5">
+            <div className="w-[30%] px-5">
               <Box
                 img="../assets/kin-mart.png"
                 title="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
               />
             </div>
-            <div className="w-[35%] px-5">
+            <div className="w-[30%] px-5">
               <Box
                 img="../assets/city-market.png"
                 title="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
               />
             </div>
 
-            <div className="w-[35%] px-5">
+            <div className="w-[30%] px-5">
               <Box
                 img="../assets/city-market.png"
                 title="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
               />
             </div>
-            <div className="w-[35%] px-5">
+            <div className="w-[30%] px-5">
               <Box
                 img="../assets/kin-mart.png"
+                title="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+              />
+            </div>
+            <div className="w-[30%] px-5">
+              <Box
+                img="../assets/city-market.png"
                 title="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
               />
             </div>
