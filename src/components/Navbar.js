@@ -15,7 +15,9 @@ const Navbar = () => {
       </div>
       <div className="  flex flex-row cursor-pointer text-lg ">
         <h1 className="item  mx-3 font-semibold">Accueil</h1>
-        <h1 className=" item mx-3 ">Super-Marché</h1>
+        <Link to="/supermarche">
+          <h1 className=" item mx-3 ">Super-Marché</h1>
+        </Link>
         <h1 className="item mx-3">Nouveautés</h1>
         <h1 className="item mx-3"> Contacts</h1>
         <h1 className="item  mx-3">Panier</h1>
