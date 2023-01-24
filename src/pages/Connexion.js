@@ -87,7 +87,7 @@ function Connexion() {
                     Avez-vous un compte?
                   </h5>
                   <button className=" ml-1 text-sm text-blue-500">
-                    Connectez-vous
+                    Connectez-vous..
                   </button>
                 </div>
               </div>
