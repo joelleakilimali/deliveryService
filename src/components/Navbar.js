@@ -26,7 +26,9 @@ const Navbar = () => {
       </div>
       <div className=" flex flex-row">
         <BsSearch className="icon " size={30} />
-        <BiUser className="icon" size={30} />
+        <Link to="/connexion">
+          <BiUser className="icon" size={30} />
+        </Link>
         <BiMessageDetail className="icon" size={30} />
       </div>
     </div>
