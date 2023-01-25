@@ -2,6 +2,7 @@ import React from "react";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { FaUserCircle } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function Connexion() {
   return (
@@ -86,9 +87,11 @@ function Connexion() {
                   <h5 className="text-white  text-lg p-2 ">
                     Avez-vous un compte?
                   </h5>
-                  <button className=" ml-1 text-sm text-blue-500">
-                    Connectez-vous..
-                  </button>
+                  <Link to="/connexion/login">
+                    <button className=" ml-1 text-sm text-blue-500">
+                      Connectez-vous
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>

@@ -22,7 +22,9 @@ const Navbar = () => {
         </Link>
         <h1 className="item mx-3">Nouveautés</h1>
         <h1 className="item mx-3"> Contacts</h1>
-        <h1 className="item  mx-3">Panier</h1>
+        <Link to="/panier">
+          <h1 className="item  mx-3">Panier</h1>
+        </Link>
       </div>
       <div className=" flex flex-row">
         <BsSearch className="icon " size={30} />
