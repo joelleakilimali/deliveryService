@@ -8,11 +8,11 @@ function Footer() {
   return (
     <div className="footcont flex flex-row w-[100%] justify-between text-gray-50">
       <div className="w-[30%] p-3">
-        <div className="flex flex-row">
+        <div className="flex flex-row ">
           <BsBasket size={25} color="white" />
           <h1 className=" text-white  text-xl ml-3">J'S Market </h1>
         </div>
-        <p className="W-[100%] py-3">
+        <p className="W-[100%] py-3 ">
           Un service de livraison à domicile des produits du super-marché. Créer
           en décembre 2022 par les munyaka à kinshasa rdc.
         </p>

@@ -43,39 +43,39 @@ function Home() {
               Les Super-Marchés
             </h2>
           </div>
-          <div className="flex flex-row flex-wrap px-10 py-5 mx-5">
-            <div className="w-[30%] px-5">
+          <div className=" box px-10 py-5 mx-5">
+            <div className=" innerBox">
               <Box
                 img="../assets/kin-marché.png"
                 title="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
               />
             </div>
-            <div className="w-[30%] px-5">
+            <div className=" innerBox">
               <Box
                 img="../assets/kin-mart.png"
                 title="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
               />
             </div>
-            <div className="w-[30%] px-5">
+            <div className=" innerBox">
               <Box
                 img="../assets/city-market.png"
                 title="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
               />
             </div>
 
-            <div className="w-[30%] px-5">
+            <div className=" innerBox">
               <Box
                 img="../assets/city-market.png"
                 title="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
               />
             </div>
-            <div className="w-[30%] px-5">
+            <div className="innerBox">
               <Box
                 img="../assets/kin-mart.png"
                 title="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
               />
             </div>
-            <div className="w-[30%] px-5">
+            <div className="innerBox">
               <Box
                 img="../assets/city-market.png"
                 title="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
@@ -89,7 +89,7 @@ function Home() {
               Les Nouveautes
             </h2>
           </div>
-          <div className="  flex flex-row justify-between m-3 px-10 py-10  bg-gradient-to-r from-sky-900 to-red-900 text-white">
+          <div className=" flex flex-row  justify-between m-3 px-10 py-10  bg-gradient-to-r from-sky-900 to-red-900 text-white">
             <div className="news mr-6 border-2 border-gray-400 ">
               <div className=" centreColum flex flex-col p-3 ">
                 <div>

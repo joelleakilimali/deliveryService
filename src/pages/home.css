@@ -13,3 +13,17 @@
   justify-content: space-between;
   width: 100%;
 }
+.box {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  grid-template-columns: auto auto auto;
+
+  padding: 10px;
+}
+.innerBox {
+  padding: 3rem 2rem;
+  outline: var(--outline-hover);
+  outline-offset: -1rem;
+  text-align: center;
+  box-shadow: var(--box-shadow);
+}
