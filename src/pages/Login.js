@@ -1,10 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import { FaUserCircle } from "react-icons/fa";
 import Navbar from "../components/Navbar";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
+  const [body, setBody] = useState();
+
+  const data = {
+    password: "",
+    email: "",
+  };
+
+  const Login = async () => {
+    await axios
+      .post("http://localhost:3001/users/login", body)
+      .then((res) => {
+        console.log(res?.data);
+        toast(res?.data?.message, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      })
+      .catch((e) => {
+        console.log(e);
+        toast("Auth failed", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      });
+  };
+
   return (
     <div>
       <div className="flex flex-col">
@@ -27,6 +54,9 @@ function Login() {
                       type="text"
                       placeholder="adresse"
                       className="p-2 mx-2 w-[300px] text-lg font-bold"
+                      onChange={(e) => {
+                        setBody({ ...body, email: e.target.value });
+                      }}
                     />
                   </div>
 
@@ -36,10 +66,19 @@ function Login() {
                       type="password"
                       placeholder="Mot de passe"
                       className="p-2 mx-2 w-[300px] text-lg font-bold"
+                      onChange={(e) => {
+                        setBody({ ...body, password: e.target.value });
+                      }}
                     />
                   </div>
 
                   <div className="  mx-8">
+                    <button
+                      className=" ml-1 text-sm text-blue-500"
+                      onClick={Login}
+                    >
+                      connexion
+                    </button>
                     <h5 className="text-white  text-lg p-2 ">
                       Mot de passe oublié?
                     </h5>
@@ -47,6 +86,7 @@ function Login() {
                       <button className=" ml-1 text-sm text-blue-500">
                         Cliquez ici
                       </button>
+                      <ToastContainer position="top-left" />
                     </Link>
                   </div>
                 </div>

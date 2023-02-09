@@ -6,6 +6,8 @@ import Shop from "./pages/Shop";
 import Connexion from "./pages/Connexion";
 import Login from "./pages/Login";
 import Panier from "./pages/Panier";
+import Admin from "./pages/Admin";
+import AddProduct from "./pages/AddProduct";
 function App() {
   return (
     <div className="App">
@@ -16,6 +18,8 @@ function App() {
           <Route exact path="/connexion" element={<Connexion />} />
           <Route exact path="/connexion/login" element={<Login />} />
           <Route exact path="/panier" element={<Panier />} />
+          <Route exact path="/admin" element={<Admin />} />
+          <Route exact path="/admin/addProduct" element={<AddProduct />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -16,11 +16,9 @@ function Panier() {
               <div className="flex flex-row justify-between m-10 text-white">
                 <div>
                   <div className="mx-5">Produits</div>
-                  <div className=" flex flex-col  ">
-                    <Carte img="./assets/ph.jpg" title="Papier Hygiénique" />
-                    <Carte img="./assets/jus.jpeg" title="Jus" />
-                    <Carte img="./assets/nutella.jpg" title="Nutella" />
-                  </div>
+                </div>
+                <div>
+                  <div className="mx-5">Prix</div>
                 </div>
                 <div className="mx-5">
                   <div className="mx-5">

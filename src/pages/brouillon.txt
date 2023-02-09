@@ -1,0 +1,92 @@
+useEffect(() => {
+  //fetch product list
+  const fetchProduct = async () => {
+    try {
+      const res = await axios
+        .get("http://localhost:3001/products/")
+        .then((res) => {
+          console.log(res.data?.products);
+        });
+    } catch (err) {}
+  };
+  // fetch userlist
+  const fetchUsers = async () => {
+    try {
+      const res = await axios
+        .get("http://localhost:3001/users/")
+        .then((res) => {
+          console.log(res?.data?.message);
+        });
+    } catch (err) {}
+  };
+  // fetch orders
+  const fetchOrders = async () => {
+    try {
+      const res = await axios
+        .get("http://localhost:3001/orders/")
+        .then((res) => {
+          console.log(res?.data?.message);
+        });
+    } catch (err) {}
+  };
+
+  fetchUsers();
+  fetchProduct();
+  fetchOrders();
+}, []);
+
+const { data, loading, error } = useFetch("/users");
+console.log("--->", data);
+
+useEffect(() => {
+  //fetch product list
+  const fetchProduct = async () => {
+    try {
+      const res = await axios
+        .get("http://localhost:3001/products/")
+        .then((res) => {
+          console.log(res.data?.products);
+        });
+    } catch (err) {}
+  };
+  // fetch userlist
+  const fetchUsers = async () => {
+    try {
+      const res = await axios
+        .get("http://localhost:3001/users/")
+        .then((res) => {
+          console.log(res?.data?.message);
+        });
+    } catch (err) {}
+  };
+  // fetch orders
+  const fetchOrders = async () => {
+    try {
+      const res = await axios
+        .get("http://localhost:3001/orders/")
+        .then((res) => {
+          console.log(res?.data);
+        });
+    } catch (err) {}
+  };
+
+  fetchUsers();
+  fetchProduct();
+  fetchOrders();
+}, []);
+
+
+
+
+
+   const fetchUser = async () => {
+      setLoading(true);
+      try {
+        const resU = await axios.get("http://localhost:3001/");
+
+        setUser(resU.data);
+      } catch (err) {
+        setError(err);
+      }
+      setLoading(false);
+    };
