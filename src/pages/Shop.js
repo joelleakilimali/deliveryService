@@ -5,7 +5,10 @@ import Article from "../components/Article";
 import Carte from "../components/Carte";
 import Footer from "../components/Footer";
 import axios from "axios";
+import { useFetch } from "../hooks/useFetch";
 function Shop() {
+  const { data, loading, error } = useFetch("/products");
+
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -53,94 +56,19 @@ function Shop() {
         </div>
 
         <div className="flex flex-row flex-wrap">
-          <div className="flex flex-row flex-wrap px-1 py-5 mx-1">
-            <div className="w-[20%] px-5">
-              <Article
-                imag="../assets/nutella.jpg"
-                date="10.06.2024"
-                prix={10}
-              />
-            </div>
-          </div>
-          <div className="flex flex-row flex-wrap px-1 py-5 mx-1">
-            <div className="w-[20%] px-5">
-              <Article imag="../assets/ph.jpg" date="10.06.2024" prix={10} />
-            </div>
-          </div>
-          <div className="flex flex-row flex-wrap px-1 py-5 mx-1">
-            <div className="w-[20%] px-5">
-              <Article
-                imag="../assets/banana.jpg"
-                date="10.06.2024"
-                prix={10}
-              />
-            </div>
-          </div>
-          <div className="flex flex-row flex-wrap px-1 py-5 mx-1">
-            <div className="w-[20%] px-5">
-              <Article
-                imag="../assets/cerelac.jpg"
-                date="10.06.2024"
-                prix={10}
-              />
-            </div>
-          </div>
-          <div className="flex flex-row flex-wrap px-1 py-5 mx-1">
-            <div className="w-[20%] px-5">
-              <Article imag="../assets/omoo.jpg" date="10.06.2024" prix={10} />
-            </div>
-          </div>
-          <div className="flex flex-row flex-wrap px-1 py-5 mx-1">
-            <div className="w-[20%] px-5">
-              <Article
-                imag="../assets/nutella.jpg"
-                date="10.06.2024"
-                prix={10}
-              />
-            </div>
-          </div>
-          <div className="flex flex-row flex-wrap px-1 py-5 mx-1">
-            <div className="w-[20%] px-5">
-              <Article
-                imag="../assets/cerelac.jpg"
-                date="10.06.2024"
-                prix={10}
-              />
-            </div>
-          </div>
-          <div className="flex flex-row flex-wrap px-1 py-5 mx-1">
-            <div className="w-[20%] px-5">
-              <Article
-                imag="../assets/banana.jpg"
-                date="10.06.2024"
-                prix={10}
-              />
-            </div>
-          </div>
-          <div className="flex flex-row flex-wrap px-1 py-5 mx-1">
-            <div className="w-[20%] px-5">
-              <Article imag="../assets/ph.jpg" date="10.06.2024" prix={10} />
-            </div>
-          </div>
-          <div className="flex flex-row flex-wrap px-1 py-5 mx-1">
-            <div className="w-[20%] px-5">
-              <Article
-                imag="../assets/nutella.jpg"
-                date="10.06.2024"
-                prix={10}
-              />
-            </div>
-          </div>
-          <div className="flex flex-row flex-wrap px-1 py-5 mx-1">
-            <div className="w-[20%] px-5">
-              <Article imag="../assets/omoo.jpg" date="10.06.2024" prix={10} />
-            </div>
-          </div>
-          <div className="flex flex-row flex-wrap px-1 py-5 mx-1">
-            <div className="w-[20%] px-5">
-              <Article imag="../assets/ph.jpg" date="10.06.2024" prix={10} />
-            </div>
-          </div>
+          <>
+            {data?.products?.map((item, key = item._id) => (
+              <div className="flex flex-row flex-wrap px-1 py-5 mx-1">
+                <div className="w-[20%] px-5">
+                  <Article
+                    imag={item.image}
+                    date={item.category}
+                    prix={item.price}
+                  />
+                </div>
+              </div>
+            ))}
+          </>
         </div>
 
         <Footer />

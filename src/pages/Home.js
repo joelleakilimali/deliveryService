@@ -44,7 +44,7 @@ function Home() {
             </h2>
           </div>
           <div className=" box px-10 py-5 mx-5">
-            <div className=" innerBox">
+            <div className="  innerBox">
               <Box
                 img="../assets/kin-marché.png"
                 title="Lorem Ipsum is simply dummy text of the printing and typesetting industry."

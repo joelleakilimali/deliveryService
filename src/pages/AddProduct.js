@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import FileBase from "react-file-base64";
 import { ToastContainer, toast } from "react-toastify";
 
 function AddProduct() {
@@ -15,15 +16,20 @@ function AddProduct() {
           position: toast.POSITION.TOP_RIGHT,
         });
       })
-      .catch((e) => {});
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   const data = {
     name: "",
     price: "",
     dateExp: "",
+    image: "",
+    dateExp: "",
   };
-  const [body, setBody] = useState();
+
+  const [body, setBody] = useState(data);
   console.log(body);
 
   return (
@@ -88,6 +94,26 @@ function AddProduct() {
                       onChange={(e) => {
                         setBody({ ...body, dateExp: e.target.value });
                       }}
+                    />
+                  </div>
+                  <div className=" flex  m-8">
+                    <h5 className=" text-xl p-2 ">Category:</h5>
+                    <input
+                      type="text"
+                      placeholder=""
+                      className="p-2 mx-2 w-[300px] text-lg  text-black    "
+                      onChange={(e) => {
+                        setBody({ ...body, category: e.target.value });
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <FileBase
+                      type="file"
+                      multiple={false}
+                      onDone={({ base64 }) =>
+                        setBody({ ...body, image: base64 })
+                      }
                     />
                   </div>
                   <button
