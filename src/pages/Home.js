@@ -150,7 +150,7 @@ function Home() {
                   <p className="">
                     To summarize, in botany, a fruit is the result of the
                     transformation of the pistil of flower plants, while the
-                    vegetable is a part of the edible plant
+                    vegetable is a part of the edible plant.thank you
                   </p>
                   <button className="btn py-3  ml-3 my-4 w-40  border-gray-400 rounded-3xl text-white border-2 ">
                     Lire Plus
