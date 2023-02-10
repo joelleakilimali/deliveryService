@@ -83,82 +83,83 @@ function Home() {
             </div>
           </div>
         </div>
-        <div>
-          <div className="flex mt-3 text-3xl justify-center">
-            <h2 className=" bg-blue-400 rounded-xl text-white p-3">
-              Les Nouveautes
-            </h2>
-          </div>
-          <div className=" flex flex-row  justify-between m-3 px-10 py-10  bg-gradient-to-r from-sky-900 to-red-900 text-white">
-            <div className="news mr-6 border-2 border-gray-400 ">
-              <div className=" centreColum flex flex-col p-3 ">
-                <div>
-                  <img src="./assets/fruits.jpg" alt="" className="w-[100%]" />
-                </div>
-                <div className=" detailnews  p-3 ">
-                  <div className=" flex flex-row  ">
-                    <FaUserAlt className=" mt-1 " />
-                    <h5 className=" mx-2 ">Par Justine</h5>
-                  </div>
-                  <div div className=" flex flex-row ">
-                    <AiFillCalendar className=" mt-1 " />
-                    <h5 className=" mx-2 ">02 Janvier 2023</h5>
-                  </div>
-                </div>
-                <div>
-                  <div>
-                    <h1 className="py-5 text-lg font-bold ">
-                      Les Fruits et Legumes
-                    </h1>
-                    <p className="">
-                      To summarize, in botany, a fruit is the result of the
-                      transformation of the pistil of flower plants, while the
-                      vegetable is a part of the edible plant
-                    </p>
-                    <button className="btn py-3  ml-3 my-4 w-40  border-gray-400 rounded-3xl text-white border-2 ">
-                      Lire Plus
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="news mr-6 border-2 border-gray-400 ">
-              <div className=" centreColum flex flex-col p-3 ">
-                <div>
-                  <img src="./assets/omo.jpg" alt="" className="w-[100%]" />
-                </div>
-                <div className=" detailnews  p-3 ">
-                  <div className=" flex flex-row  ">
-                    <FaUserAlt className="mt-1" />
-                    <h5 className=" mx-2 ">Par Justine</h5>
-                  </div>
-                  <div
-                    div
-                    className=" flex flex-row align-middle justify-center "
-                  >
-                    <AiFillCalendar className="mt-1" />
-                    <h5 className=" mx-2 ">02 Janvier 2023</h5>
-                  </div>
-                </div>
-                <div>
-                  <div>
-                    <h1 className="py-5 text-lg font-bold ">
-                      Les Produits Masavco
-                    </h1>
-                    <p className="">
-                      To summarize, in botany, a fruit is the result of the
-                      transformation of the pistil of flower plants, while the
-                      vegetable is a part of the edible plant
-                    </p>
-                    <button className="btn py-3  ml-3 my-4 w-40  border-gray-400 rounded-3xl text-white border-2 ">
-                      Lire Plus
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+      </div>
+      <div className="flex  flex-col ">
+        <div className="flex mt-3 text-3xl justify-center">
+          <h2 className=" bg-blue-400 rounded-xl text-white p-3">
+            Les Nouveautes
+          </h2>
         </div>
+        <span className="flex justify-between flex-wrap px-10 py-5 mx-5  bg-gradient-to-r from-sky-900 to-red-900 ">
+          <div className="border-2 border-gray-200 w-[500px]">
+            <div className="  flex flex-col p-3  text-white">
+              <div>
+                <img src="./assets/omo.jpg" alt="" className="w-[100%]" />
+              </div>
+              <div className=" detailnews  p-3 ">
+                <div className=" flex flex-row  ">
+                  <FaUserAlt className="mt-1" />
+                  <h5 className=" mx-2 ">Par Justine</h5>
+                </div>
+                <div
+                  div
+                  className=" flex flex-row align-middle justify-center "
+                >
+                  <AiFillCalendar className="mt-1" />
+                  <h5 className=" mx-2 ">02 Janvier 2023</h5>
+                </div>
+              </div>
+              <div>
+                <div>
+                  <h1 className="py-5 text-lg font-bold ">
+                    Les Produits Masavco
+                  </h1>
+                  <p className="">
+                    To summarize, in botany, a fruit is the result of the
+                    transformation of the pistil of flower plants, while the
+                    vegetable is a part of the edible plant
+                  </p>
+                  <button className="btn py-3  ml-3 my-4 w-40  border-gray-400 rounded-3xl text-white border-2 ">
+                    Lire Plus
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-2 border-gray-200  w-[500px]">
+            <div className="  flex flex-col p-3 text-white ">
+              <div>
+                <img src="./assets/fruits.jpg" alt="" className="w-[100%]" />
+              </div>
+              <div className=" detailnews  p-3 ">
+                <div className=" flex flex-row  ">
+                  <FaUserAlt className=" mt-1 " />
+                  <h5 className=" mx-2 ">Par Justine</h5>
+                </div>
+                <div div className=" flex flex-row ">
+                  <AiFillCalendar className=" mt-1 " />
+                  <h5 className=" mx-2 ">02 Janvier 2023</h5>
+                </div>
+              </div>
+              <div>
+                <div>
+                  <h1 className="py-5 text-lg font-bold ">
+                    Les Fruits et Legumes
+                  </h1>
+                  <p className="">
+                    To summarize, in botany, a fruit is the result of the
+                    transformation of the pistil of flower plants, while the
+                    vegetable is a part of the edible plant
+                  </p>
+                  <button className="btn py-3  ml-3 my-4 w-40  border-gray-400 rounded-3xl text-white border-2 ">
+                    Lire Plus
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </span>
       </div>
       <Footer />
     </div>
