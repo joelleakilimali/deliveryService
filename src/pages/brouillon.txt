@@ -141,6 +141,7 @@ useEffect(() => {
                 <div className=" detailnews  p-3 ">
                   <div className=" flex flex-row  ">
                     <FaUserAlt className="mt-1" />
+
                     <h5 className=" mx-2 ">Par Justine</h5>
                   </div>
                   <div
@@ -167,3 +168,18 @@ useEffect(() => {
                   </div>
                 </div>
               </div>
+
+
+
+
+
+
+
+
+                 {lisProduct?.map((item, key = item._id) => (
+            <div className="flex flex-row flex-wrap px-1 py-5 mx-1">
+              <div className="w-[20%] px-5">
+                <Carte title={lisProduct[0]?.name} img={item?.img} />{" "}
+              </div>
+            </div>
+          ))}

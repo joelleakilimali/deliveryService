@@ -4,6 +4,7 @@ import "./footer.css";
 import { BsBasket, BsFillTelephoneFill } from "react-icons/bs";
 import { AiOutlineInstagram } from "react-icons/ai";
 import { IoLocationOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
 function Footer() {
   return (
     <div className="footcont flex flex-row w-[100%] justify-between text-gray-50">
@@ -21,12 +22,16 @@ function Footer() {
         <h1>Contacts</h1>
         <div className="mt-4 centreColum ">
           <div className="centerRow  pr-14 mb-3 ">
-            <AiOutlineInstagram size={25} className="cursor-pointer" />
+            <a href="https://www.instagram.com/invites/contact/?i=1o83r5prsg16y&utm_content=qi2dh94">
+              <AiOutlineInstagram size={25} className="cursor-pointer" />
+            </a>
             <h5 className="px-3 ">Js market</h5>
           </div>
           <div className=" centerRow">
-            <BsFillTelephoneFill size={20} />
-            <h5 className="px-3 ">+243 823456789</h5>
+            <a href="ttps://wa.me/message/TFTODJF6X5S4M1" className="px-3 ">
+              <BsFillTelephoneFill size={20} />{" "}
+            </a>
+            +243 823456789
           </div>
         </div>
       </div>

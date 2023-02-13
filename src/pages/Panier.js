@@ -4,8 +4,18 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Carte from "../components/Carte";
+import { useFetch } from "../hooks/useFetch";
 
 function Panier() {
+  let user = window.localStorage.getItem("userData");
+  const userInfo = JSON.parse(user);
+
+  // console.log(userInfo.lastName);
+
+  const { order, loading, error } = useFetch("/orders");
+  let comnd = order.orders;
+  console.log(order.orders);
+
   return (
     <div>
       <div>
@@ -29,7 +39,13 @@ function Panier() {
                   </div>
                 </div>
                 <div className="mx-5">Total</div>
-                <div></div>
+                <div>
+                  {order?.orders?.map((item, key = item._id) => (
+                    <div className="flex flex-row flex-wrap px-1 py-5 mx-1">
+                      <div className="w-[20%] px-5"></div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

@@ -7,6 +7,9 @@ import { BiMessageDetail, BiUser } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  let user = window.localStorage.getItem("userData");
+  const userInfo = JSON.parse(user);
+  console.log(userInfo);
   return (
     <div className="header">
       <div className="flex flex-row  ">
@@ -32,6 +35,7 @@ const Navbar = () => {
           <BiUser className="icon" size={30} />
         </Link>
         <BiMessageDetail className="icon" size={30} />
+        <h1 className="text-base">{userInfo.firstName}</h1>
       </div>
     </div>
   );

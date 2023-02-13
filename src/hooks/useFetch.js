@@ -12,6 +12,7 @@ export const useFetch = (url) => {
 
   const [loadingU, setLoadingU] = useState(false);
   const [errorU, setErrorU] = useState(false);
+  const [order, setOrder] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,5 +45,22 @@ export const useFetch = (url) => {
 
     fetchData();
   }, [url]);
-  return { data, loading, error, user, loadingU, errorU };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoadingU(true);
+      try {
+        const res = await axios.get("http://localhost:3001/orders/");
+
+        setOrder(res.data);
+      } catch (err) {
+        setError(err);
+      }
+      setLoadingU(false);
+    };
+
+    fetchData();
+  }, [url]);
+
+  return { data, loading, error, user, loadingU, errorU, order };
 };

@@ -9,12 +9,13 @@ import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
   const [body, setBody] = useState();
+  const [user, setUser] = useState({});
 
   const data = {
     password: "",
     email: "",
   };
-
+  const { email, password } = data;
   const Login = async () => {
     await axios
       .post("http://localhost:3001/users/login", body)
@@ -23,6 +24,9 @@ function Login() {
         toast(res?.data?.message, {
           position: toast.POSITION.TOP_RIGHT,
         });
+        const userData = localStorage.getItem("userData");
+        const parsed = JSON.parse(userData);
+        setUser(parsed);
       })
       .catch((e) => {
         console.log(e);
@@ -31,7 +35,7 @@ function Login() {
         });
       });
   };
-
+  console.log(user.lastName);
   return (
     <div>
       <div className="flex flex-col">
