@@ -15,6 +15,7 @@ function Login() {
     password: "",
     email: "",
   };
+  let parsed;
   const { email, password } = data;
   const Login = async () => {
     await axios
@@ -24,9 +25,8 @@ function Login() {
         toast(res?.data?.message, {
           position: toast.POSITION.TOP_RIGHT,
         });
-        const userData = localStorage.getItem("userData");
-        const parsed = JSON.parse(userData);
-        setUser(parsed);
+
+        localStorage.setItem("userData", JSON.stringify(res.data));
       })
       .catch((e) => {
         console.log(e);
@@ -35,7 +35,7 @@ function Login() {
         });
       });
   };
-  console.log(user.lastName);
+  console.log("parsed:", parsed);
   return (
     <div>
       <div className="flex flex-col">
