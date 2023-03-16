@@ -135,9 +135,7 @@ function Shop({ addOrderfunc }) {
             </div>
           ))}
         </div>
-        <>
-          <button onClick={createOrder}> add</button>
-        </>
+
         <Footer />
       </div>
     </div>

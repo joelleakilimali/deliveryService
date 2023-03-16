@@ -52,12 +52,22 @@ function Admin() {
               </div>
               <div className="flex flex-col justify-between pt-5">
                 {data?.products?.map((item, key = item._id) => (
-                  <div className="flex flex-row justify-between">
-                    <h1 className="p-1 uppercase text-sm">{item.name}</h1>
-                    <h1 className="p-1 uppercase text-sm mx-14">
-                      {item.price}
-                    </h1>
-                    <h1 className="p-1 uppercase text-sm ">{item.category}</h1>
+                  <div className="flex flex-row justify-between ">
+                    <div className="">
+                      <h1 className="p-2 uppercase text-sm w-[50px]  ">
+                        {item.name}
+                      </h1>
+                    </div>
+                    <div>
+                      <h1 className="p-1 uppercase text-sm mx-14 w-[30px]">
+                        {item.price}
+                      </h1>
+                    </div>
+                    <div>
+                      <h1 className="p-1 uppercase text-sm  w-[30px]">
+                        {item.category}
+                      </h1>
+                    </div>
                   </div>
                 ))}
               </div>

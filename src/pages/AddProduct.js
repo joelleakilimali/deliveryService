@@ -59,18 +59,20 @@ function AddProduct() {
           </div>
           <div className="flex justify-between mt-20 bg-gradient-to-r from-sky-900 to-red-900">
             <div className="px-5 text-white">
-              <h2 className="font-bold text-3xl ">Ajouter nouveaux produits</h2>
+              <h2 className="font-bold text-3xl pt-5 ">
+                Ajouter nouveaux produits
+              </h2>
               <div className="flex justify-evenly m-10">
                 <div className="flex w-[100%] pt-3 ">
                   <div className="input ">
                     <div className="input">
                       <div className="  mx-8">
                         <h5 className="text-white text-xl p-2 ">
-                          Nom du produits{" "}
+                          Nom du produit
                         </h5>
                         <input
                           type="text"
-                          placeholder="Noms"
+                          placeholder=" Nom du produit"
                           className="p-2 mx-2 w-[300px] text-black"
                           onChange={(e) => {
                             setBody({ ...body, name: e.target.value });
@@ -81,7 +83,7 @@ function AddProduct() {
                         <h5 className="text-white text-xl p-2 ">Prix: </h5>
                         <input
                           type="text"
-                          placeholder="Prenom"
+                          placeholder="Prix"
                           className="p-2 mx-2 w-[300px] text-black"
                           onChange={(e) => {
                             setBody({ ...body, price: e.target.value });
@@ -90,11 +92,11 @@ function AddProduct() {
                       </div>
                       <div className="  mx-8">
                         <h5 className="text-white text-xl p-2 ">
-                          Dte d'expiration
+                          Date d'expiration
                         </h5>
                         <input
                           type="text"
-                          placeholder="Adresse Email"
+                          placeholder="Date d'expiration"
                           className="p-2 mx-2 w-[300px] text-black"
                           onChange={(e) => {
                             setBody({ ...body, dateExp: e.target.value });
@@ -105,7 +107,7 @@ function AddProduct() {
                         <h5 className="text-white text-xl p-2 ">Category </h5>
                         <input
                           type="text"
-                          placeholder="Mot de passe"
+                          placeholder="Category"
                           className="p-2 mx-2 w-[300px] text-black"
                           onChange={(e) => {
                             setBody({ ...body, category: e.target.value });

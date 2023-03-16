@@ -6,6 +6,7 @@ import Box from "../components/Box";
 import { FaUserAlt } from "react-icons/fa";
 import { AiFillCalendar } from "react-icons/ai";
 import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 function Home() {
   return (
     <div className="flex flex-col ">
@@ -58,7 +59,7 @@ function Home() {
             </div>
             <div className=" innerBox">
               <Box
-                img="../assets/GGmart.png"
+                img="../assets/ggmatt.jfif"
                 title="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
               />
             </div>
@@ -75,12 +76,14 @@ function Home() {
                 title="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
               />
             </div>
-            <div className="innerBox">
-              <Box
-                img="../assets/city-market.png"
-                title="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-              />
-            </div>
+            <Link to="/supermarche">
+              <div className="innerBox">
+                <Box
+                  img="../assets/city-market.png"
+                  title="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+                />
+              </div>
+            </Link>
           </div>
         </div>
       </div>
