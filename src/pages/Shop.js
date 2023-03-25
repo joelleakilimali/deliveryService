@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Navbar from "../components/Navbar";
 import Box from "../components/Box";
 import Article from "../components/Article";
@@ -8,12 +8,16 @@ import axios from "axios";
 import { useFetch } from "../hooks/useFetch";
 import Carousel from "carousel-react-rcdev";
 import { toast } from "react-toastify";
+import { Context } from "../context/AuthCont";
 
 //const user = JSON.parse(localStorage.getItem("userData"));
 //console.log("userId:", user.id);
 function Shop({ addOrderfunc }) {
+  const { getUserData, Logout, profile } = useContext(Context);
+  const user = getUserData();
+
   const [body, setBody] = useState({
-    user: "63dfabe453a504ba92c09acf",
+    user: "",
     products: "",
   });
 
@@ -123,7 +127,7 @@ function Shop({ addOrderfunc }) {
                   className="btnarticle  py-1  ml-2 my-4 w-24 bg-whitey  border-gray-300 text-black rounded-3xl  border-2  "
                   onClick={() => {
                     console.log("-->", item._id);
-                    setBody({ ...body, products: item._id });
+                    setBody({ user: user._id, products: item._id });
                     console.log("prd:", body);
                     createOrder();
                     //createOrder(item.id);

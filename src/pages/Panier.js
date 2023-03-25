@@ -5,39 +5,34 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Carte from "../components/Carte";
 import { useFetch } from "../hooks/useFetch";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { ImWondering2 } from "react-icons/im";
+import { Context } from "../context/AuthCont";
 
 function Panier() {
-  let user = window.localStorage.getItem("userData");
-  const userInfo = JSON.parse(user);
-  // console.log(userInfo.lastName);
+  const { getUserData, Logout, profile } = useContext(Context);
+  const user = getUserData();
   const [quantity, setQuantity] = useState(1);
   const [itemDelete, setitemDelete] = useState();
   const [com, setcom] = useState([]);
-
+  const [isempty, setIsempty] = useState(0);
   const { order, loading, error } = useFetch("/orders");
-  let comnd = order.orders;
-  const userid = "63dfabe453a504ba92c09acf";
-  //  63dfac1d53a504ba92c09ad6
+
   useEffect(() => {}, [com]);
   const orde = async () => {
     await axios
-      .post(`http://localhost:3001/orders/${userid}`)
+      .post(`http://localhost:3001/orders/${user._id}`)
       .then((res) => {
         setcom(res.data);
-        //console.log("cmd:", res.data);
-        console.log("cmd:", com.orders);
+        setIsempty(res.data.count);
       })
       .catch((e) => {
         console.log(e);
       });
   };
-  //let commande = orde();
-  //console.log("orders of user :", orde);
 
   const deleteItem = async () => {
     console.log(itemDelete);
@@ -69,21 +64,34 @@ function Panier() {
                 </div>
                 <div className="mx-5  border-y-2">Total</div>
               </div>
-              {order?.count === 0 ? (
-                <div className="p-40">
+              {isempty < 1 ? (
+                <div className="p-40 flex  flex-col">
                   <h1 className="font-bold text-3xl text-white">
                     Aucune commande dans le panier
                   </h1>
-                  <ImWondering2 size={80} color="white" />
+                  <div className="p-5 flex ">
+                    <ImWondering2 size={80} color="white" />
+
+                    <button
+                      onClick={orde}
+                      className=" text-white text-lg font-bold mx-5 bg-blue-600 rounded-lg "
+                    >
+                      Voir plus
+                    </button>
+                  </div>
                 </div>
               ) : (
                 <div className="flex flex-col justify-between mx-10 text-white">
                   {com?.orders?.map((item, key = item._id) => (
-                    <div className="flex flex-row flex-wrap px-1 py-5 mx-2  justify-between">
+                    <div
+                      key={item.id}
+                      className="flex flex-row flex-wrap px-1 py-5 mx-2  justify-between"
+                    >
                       <div className=" flex flex-row items-center w-[80px]  ">
                         <div className="centerRow ">
                           <AiOutlineDelete
                             size={20}
+                            color="red"
                             className=" mx-1"
                             onClick={() => {
                               setitemDelete(item.product._id);
@@ -178,7 +186,6 @@ function Panier() {
               </div>
             </div>
           </div>
-          <button onClick={orde}>click</button>
           <Footer />
         </div>
       </div>
