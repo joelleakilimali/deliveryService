@@ -23,6 +23,7 @@ function Panier() {
   let comnd = order.orders;
   const userid = "63dfabe453a504ba92c09acf";
   //  63dfac1d53a504ba92c09ad6
+  useEffect(() => {}, [com]);
   const orde = async () => {
     await axios
       .post(`http://localhost:3001/orders/${userid}`)

@@ -9,8 +9,8 @@ import { useFetch } from "../hooks/useFetch";
 import Carousel from "carousel-react-rcdev";
 import { toast } from "react-toastify";
 
-const user = JSON.parse(localStorage.getItem("userData"));
-console.log("userId:", user.id);
+//const user = JSON.parse(localStorage.getItem("userData"));
+//console.log("userId:", user.id);
 function Shop({ addOrderfunc }) {
   const [body, setBody] = useState({
     user: "63dfabe453a504ba92c09acf",

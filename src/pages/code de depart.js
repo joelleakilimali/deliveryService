@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import { FaUserCircle } from "react-icons/fa";
@@ -6,12 +6,36 @@ import Navbar from "../components/Navbar";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { AuthContext } from "../context/Authcontext";
-import { useNavigate } from "react-router-dom";
-import { Context } from "../context/AuthCont";
-function Login() {
-  const { Login, isLoading, userInfo, setUserinfo } = useContext(Context);
 
+function Login() {
+  const [body, setBody] = useState();
+  const [user, setUser] = useState({});
+
+  const data = {
+    password: "",
+    email: "",
+  };
+  let parsed;
+  const { email, password } = data;
+  const Login = async () => {
+    await axios
+      .post("http://localhost:3001/users/login", body)
+      .then((res) => {
+        console.log(res?.data);
+        toast(res?.data?.message, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+
+        localStorage.setItem("userData", JSON.stringify(res.data));
+      })
+      .catch((e) => {
+        console.log(e);
+        toast("Auth failed", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      });
+  };
+  console.log("parsed:", parsed);
   return (
     <div>
       <div className="flex flex-col">
@@ -32,12 +56,11 @@ function Login() {
                     <h5 className="text-white text-xl p-2 ">Adresse email</h5>
                     <input
                       type="text"
-                      placeholder="adresse email"
-                      id="username"
+                      placeholder="adresse"
                       className="p-2 mx-2 w-[300px] text-lg font-bold"
-                      onChange={(e) =>
-                        setUserinfo({ ...userInfo, email: e.target.value })
-                      }
+                      onChange={(e) => {
+                        setBody({ ...body, email: e.target.value });
+                      }}
                     />
                   </div>
 
@@ -47,10 +70,9 @@ function Login() {
                       type="password"
                       placeholder="Mot de passe"
                       className="p-2 mx-2 w-[300px] text-lg font-bold"
-                      id="password"
-                      onChange={(e) =>
-                        setUserinfo({ ...userInfo, password: e.target.value })
-                      }
+                      onChange={(e) => {
+                        setBody({ ...body, password: e.target.value });
+                      }}
                     />
                   </div>
 
@@ -61,7 +83,6 @@ function Login() {
                     >
                       connexion
                     </button>
-
                     <h5 className="text-white  text-lg p-2 ">
                       Mot de passe oublié?
                     </h5>
