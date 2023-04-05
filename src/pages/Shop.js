@@ -7,14 +7,29 @@ import Footer from "../components/Footer";
 import axios from "axios";
 import { useFetch } from "../hooks/useFetch";
 import Carousel from "carousel-react-rcdev";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Context } from "../context/AuthCont";
+import ProductContext from "../context/ProductContext";
 
-//const user = JSON.parse(localStorage.getItem("userData"));
-//console.log("userId:", user.id);
 function Shop({ addOrderfunc }) {
-  const { getUserData, Logout, profile } = useContext(Context);
+  const { getUserData, addCommande } = useContext(Context);
   const user = getUserData();
+  const addList = async () => {
+    if (!user) {
+      toast.warning("il faudrais se connecter pour faire l'achat!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+    addCommande(body);
+  };
 
   const [body, setBody] = useState({
     user: "",
@@ -38,10 +53,7 @@ function Shop({ addOrderfunc }) {
         toast(e);
       });
   };
-  //console.log(user);
-  const [test, setTest] = useState();
-  let a = 1;
-  let test2 = [];
+
   const lisProduct = [
     {
       name: "Boisson",
@@ -80,10 +92,10 @@ function Shop({ addOrderfunc }) {
 
   return (
     <div>
+      <ToastContainer position="top-left" />
       <div>
         <Navbar />
       </div>
-
       <div>
         <div className="flex mt-12 text-3xl justify-center pt-20">
           <h2 className=" bg-blue-400 rounded-xl text-white p-3">
@@ -104,7 +116,6 @@ function Shop({ addOrderfunc }) {
           </div>
         </Carousel>
       </div>
-
       <div>
         <div className="flex mt-20 text-3xl justify-center">
           <h2 className=" bg-blue-400 rounded-xl text-white p-3">
@@ -126,11 +137,16 @@ function Shop({ addOrderfunc }) {
                 <button
                   className="btnarticle  py-1  ml-2 my-4 w-24 bg-whitey  border-gray-300 text-black rounded-3xl  border-2  "
                   onClick={() => {
-                    console.log("-->", item._id);
-                    setBody({ user: user._id, products: item._id });
-                    console.log("prd:", body);
-                    createOrder();
-                    //createOrder(item.id);
+                    setBody({
+                      user: user?._id,
+                      products: item._id,
+                      name: item.name,
+                      price: item.price,
+                      quantity: 1,
+                      total: item.price,
+                      id: parseFloat(Math.random() * 100),
+                    });
+                    addList();
                   }}
                 >
                   Ajouter

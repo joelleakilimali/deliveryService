@@ -13,38 +13,34 @@ import { ImWondering2 } from "react-icons/im";
 import { Context } from "../context/AuthCont";
 
 function Panier() {
-  const { getUserData, Logout, profile } = useContext(Context);
+  const {
+    getUserData,
+    commande,
+    deleteCommandById,
+    updateItemQuantity,
+    profile,
+  } = useContext(Context);
   const user = getUserData();
   const [quantity, setQuantity] = useState(1);
   const [itemDelete, setitemDelete] = useState();
   const [com, setcom] = useState([]);
-  const [isempty, setIsempty] = useState(0);
-  const { order, loading, error } = useFetch("/orders");
-
+  const [products] = commande;
   useEffect(() => {}, [com]);
   const orde = async () => {
     await axios
       .post(`http://localhost:3001/orders/${user._id}`)
       .then((res) => {
         setcom(res.data);
-        setIsempty(res.data.count);
       })
       .catch((e) => {
         console.log(e);
       });
+  };
+  const handleUpdateQuantity = (quantity, id) => {
+    const newQuantity = quantity;
+    updateItemQuantity(id, newQuantity);
   };
 
-  const deleteItem = async () => {
-    console.log(itemDelete);
-    await axios
-      .delete(`http://localhost:3001/orders/${itemDelete}`)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
   return (
     <div>
       <div>
@@ -64,7 +60,7 @@ function Panier() {
                 </div>
                 <div className="mx-5  border-y-2">Total</div>
               </div>
-              {isempty < 1 ? (
+              {commande < 1 ? (
                 <div className="p-40 flex  flex-col">
                   <h1 className="font-bold text-3xl text-white">
                     Aucune commande dans le panier
@@ -82,54 +78,45 @@ function Panier() {
                 </div>
               ) : (
                 <div className="flex flex-col justify-between mx-10 text-white">
-                  {com?.orders?.map((item, key = item._id) => (
-                    <div
-                      key={item.id}
-                      className="flex flex-row flex-wrap px-1 py-5 mx-2  justify-between"
-                    >
-                      <div className=" flex flex-row items-center w-[80px]  ">
-                        <div className="centerRow ">
-                          <AiOutlineDelete
-                            size={20}
-                            color="red"
-                            className=" mx-1"
-                            onClick={() => {
-                              setitemDelete(item.product._id);
-                              deleteItem();
-                            }}
-                          />
-                          <h1 className="text-white w-[40px]">
-                            {item.product.name}
-                          </h1>
+                  {commande.map((item) => (
+                    <div key={String(item.id)}>
+                      <div className="flex flex-row flex-wrap px-1 py-5 mx-2  justify-between">
+                        <div className=" flex flex-row items-center w-[80px]  ">
+                          <div className="centerRow ">
+                            <AiOutlineDelete
+                              size={20}
+                              color="red"
+                              className=" mx-1"
+                              onClick={() => {
+                                deleteCommandById(item.id);
+                              }}
+                            />
+                            <h1 className="text-white w-[40px]">
+                              {" "}
+                              {item?.name}
+                            </h1>
+                          </div>
                         </div>
-                      </div>
-                      <div>
-                        <h1 className="text-white ">{item.product.price}</h1>
-                      </div>
-                      <div className="flex">
-                        <button
-                          onClick={() => {
-                            item.quantity--;
-                            // a = item.quantity;
-                            console.log(item.quantity);
-                          }}
-                          className="border-[0.10px] rounded-lg border-x-gray-300 px-2 text-red-600 font-extrabold text-lg"
-                        >
-                          -
-                        </button>
-                        <h1 className="text-white ">2</h1>
-                        <button
-                          onClick={() => {
-                            item.quantity++;
-                            console.log(item.quantity);
-                          }}
-                          className="border-[0.10px] rounded-lg border-x-gray-300 px-1 text-green-600 font-extrabold text-lg"
-                        >
-                          +
-                        </button>
-                      </div>
-                      <div>
-                        <h1>500</h1>
+                        <div>
+                          <h1 className="text-white "> {item?.price}</h1>
+                        </div>
+                        <div className="flex">
+                          <button className="border-[0.10px] rounded-lg border-x-gray-300 px-2 text-red-600 font-extrabold text-lg">
+                            -
+                          </button>
+                          <h1 className="text-white ">{item?.quantity}</h1>
+                          <button
+                            onClick={() => {
+                              handleUpdateQuantity(item.quantity + 1, item._id);
+                            }}
+                            className="border-[0.10px] rounded-lg border-x-gray-300 px-1 text-green-600 font-extrabold text-lg"
+                          >
+                            +
+                          </button>
+                        </div>
+                        <div>
+                          <h1>{item.total * item.quantity}</h1>
+                        </div>
                       </div>
                     </div>
                   ))}

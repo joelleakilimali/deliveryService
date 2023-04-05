@@ -1,10 +1,6 @@
 import axios from "axios";
 import React, { createContext, useState } from "react";
-//import { useHistory } from "react-router-dom";
-//import { Notifications } from "../components";
-//import { BASE_URL } from "../Config";
-//import { ISignin, iUser } from "../interfaces";
-//import { Routes } from "../routes";
+import { toast } from "react-toastify";
 
 export const Context = createContext(null);
 
@@ -16,8 +12,7 @@ const ContextProvider = ({ children }) => {
     email: "",
     password: "",
   });
-
-  //const history = useHistory();
+  const [commande, setCommande] = useState([]);
 
   const setUserData = (data) => {
     localStorage.setItem("userData", JSON.stringify(data));
@@ -44,23 +39,42 @@ const ContextProvider = ({ children }) => {
         setIsLoading(false);
         setProfile(res?.data.find_user);
         setUserData(res?.data?.user);
-
         setToken(res?.data?.token);
-        // history.replace(Routes.FEED.path);
+        toast("connexion");
       })
       .catch((e) => {
         console.log(e?.response?.data);
         setIsLoading(false);
-        // Notifications("error", e?.response?.data?.message, 5000, "top-right");
       });
   };
 
   const Logout = () => {
     localStorage.clear();
     sessionStorage.clear();
-    // history.replace(Routes.SIGNIN.path);
+  };
+  const addCommande = (body) => {
+    const newCommande = [...commande, body];
+    setCommande(newCommande);
+    console.log(commande);
   };
 
+  const deleteCommandById = (itemId) => {
+    console.log(commande);
+    const comandUpdate = commande.filter((item) => item.id !== itemId);
+    console.log("new commande", comandUpdate);
+    setCommande("--->", comandUpdate);
+  };
+  const updateItemQuantity = (itemId, newQuantity) => {
+    const updatedBasket = commande.map((item) => {
+      if (item.id === itemId) {
+        return { ...item, quantity: newQuantity };
+      }
+      return item;
+    });
+    setCommande(updatedBasket);
+  };
+
+  //
   return (
     <Context.Provider
       value={{
@@ -74,6 +88,10 @@ const ContextProvider = ({ children }) => {
         Logout,
         profile,
         setProfile,
+        addCommande,
+        commande,
+        deleteCommandById,
+        updateItemQuantity,
       }}
     >
       {children}

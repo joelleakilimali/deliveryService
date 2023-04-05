@@ -9,6 +9,7 @@ import Panier from "./pages/Panier";
 import Admin from "./pages/Admin";
 import AddProduct from "./pages/AddProduct";
 import ContextProvider from "./context/AuthCont";
+
 function App() {
   return (
     <div className="App">

@@ -11,7 +11,11 @@ import { useNavigate } from "react-router-dom";
 import { Context } from "../context/AuthCont";
 function Login() {
   const { Login, isLoading, userInfo, setUserinfo } = useContext(Context);
-
+  const navigate = useNavigate();
+  const handleLogin = () => {
+    Login();
+    navigate("/");
+  };
   return (
     <div>
       <div className="flex flex-col">
@@ -57,7 +61,7 @@ function Login() {
                   <div className="  mx-8">
                     <button
                       className=" ml-1 text-sm text-blue-500"
-                      onClick={Login}
+                      onClick={handleLogin}
                     >
                       connexion
                     </button>
