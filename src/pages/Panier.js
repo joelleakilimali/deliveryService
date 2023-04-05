@@ -79,10 +79,10 @@ function Panier() {
               ) : (
                 <div className="flex flex-col justify-between mx-10 text-white">
                   {commande.map((item) => (
-                    <div key={String(item.id)}>
+                    <div key={item.id}>
                       <div className="flex flex-row flex-wrap px-1 py-5 mx-2  justify-between">
-                        <div className=" flex flex-row items-center w-[80px]  ">
-                          <div className="centerRow ">
+                        <div className="flex flex-row items-center w-[80px]">
+                          <div className="centerRow">
                             <AiOutlineDelete
                               size={20}
                               color="red"
