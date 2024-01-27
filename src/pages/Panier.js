@@ -11,115 +11,217 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { ImWondering2 } from "react-icons/im";
 import { Context } from "../context/AuthCont";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Button, Table } from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
 function Panier() {
   const {
     getUserData,
     commande,
     deleteCommandById,
     updateItemQuantity,
-    profile,
+    makeOrder,
   } = useContext(Context);
   const user = getUserData();
-  const [quantity, setQuantity] = useState(1);
-  const [itemDelete, setitemDelete] = useState();
   const [com, setcom] = useState([]);
-  const [products] = commande;
+
   useEffect(() => {}, [com]);
   const orde = async () => {
     await axios
       .post(`http://localhost:3001/orders/${user._id}`)
       .then((res) => {
-        setcom(res.data);
+        console.log("first");
       })
       .catch((e) => {
         console.log(e);
       });
   };
+  console.log(user);
+  const WarningToast = ({ message }) => {
+    return (
+      <div className="flex flex-row items-center">
+        <span className="material-icons mr-2 text-yellow-500">Attention </span>
+        <span className="text-yellow-500">{message}</span>
+      </div>
+    );
+  };
   const handleUpdateQuantity = (quantity, id) => {
+    console.log(quantity);
     const newQuantity = quantity;
     updateItemQuantity(id, newQuantity);
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (commande.length < 1) {
+      toast.warning(<WarningToast message="panier vide " />, {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      try {
+        await makeOrder(user._id, { products: commande });
+        toast.success("Payment effectuer !", {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          style: {
+            background: "#2ecc71",
+            color: "#fff",
+            borderRadius: "10px",
+            border: "none",
+            boxShadow: "0 2px 5px rgba(0, 0, 0, 0.3)",
+          },
+          toastClassName: "toast-sucess",
+        });
+      } catch (error) {
+        console.log(error);
+        if (error.response && error.response.status === 500) {
+          // Server error
+          alert("Oops, something went wrong. Please try again later.");
+        } else {
+          // Other error
+          alert("An error occurred. Please try again later.");
+        }
+      }
+    }
+  };
+
+  const handleONSend = () => {
+    if (commande.length < 1) {
+      toast.warning(<WarningToast message="panier vide " />, {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      //makeOrder(user._id, commande);
+      toast.success("Payment effectuer !", {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        style: {
+          background: "#2ecc71",
+          color: "#fff",
+          borderRadius: "10px",
+          border: "none",
+          boxShadow: "0 2px 5px rgba(0, 0, 0, 0.3)",
+        },
+        toastClassName: "toast-sucess",
+      });
+    }
+  };
+
+  const columns = [
+    {
+      title: "Produits",
+      dataIndex: "name",
+      key: "name",
+    },
+    {
+      title: "Prix",
+      dataIndex: "price",
+      key: "price",
+    },
+    {
+      title: "Quantités",
+      dataIndex: "quantity",
+      key: "quantity",
+      render: (text, record) => (
+        <div>
+          <Button
+            type="default"
+            onClick={() => {
+              record.quantity -= 1;
+              handleUpdateQuantity(record.quantity - 1, record.id);
+            }}
+          >
+            -
+          </Button>
+          <span>{record.quantity}</span>
+          <Button
+            type="default"
+            onClick={() => {
+              record.quantity += 1;
+              handleUpdateQuantity(record.quantity + 1, record.id);
+            }}
+          >
+            +
+          </Button>
+        </div>
+      ),
+    },
+    {
+      title: "Total",
+      render: (text, record) => <span>{record.total * record.quantity}</span>,
+    },
+    {
+      title: "Action",
+      render: (text, record) => (
+        <Button
+          type="danger"
+          icon={<DeleteOutlined />}
+          onClick={() => {
+            deleteCommandById(record.id);
+          }}
+        >
+          Supprimer
+        </Button>
+      ),
+    },
+  ];
+  const tableStyle = {
+    background: "linear-gradient(to right, #0077FF, FF0000)", // Replace with your gradient colors
+    color: "blue", // Text color
+  };
   return (
     <div>
       <div>
         <div className="flex flex-col">
           <Navbar />
-          <div className=" flex-1  mt-24 bg-gradient-to-r from-sky-900 to-red-900">
-            <div className=" flex  flex-col border-2 border-white  ">
-              <div className="flex flex-row justify-between mx-10 mt-10 text-white">
-                <div>
-                  <div className="mx-5 border-y-2">Produits</div>
-                </div>
-                <div>
-                  <div className="mx-5  border-y-2">Prix</div>
-                </div>
-                <div>
-                  <div className="mx-5  border-y-2">Quantites</div>
-                </div>
-                <div className="mx-5  border-y-2">Total</div>
-              </div>
-              {commande < 1 ? (
-                <div className="p-40 flex  flex-col">
+          <ToastContainer />
+
+          <div className="flex-1  mt-5  ">
+            <div className="flex flex-col border-2 p-5">
+              {commande.length === 0 ? (
+                <div className="py-20 flex flex-col bg-gradient-to-r from-sky-900 to-red-900">
                   <h1 className="font-bold text-3xl text-white">
                     Aucune commande dans le panier
                   </h1>
-                  <div className="p-5 flex ">
+                  <div className="p-5 flex">
                     <ImWondering2 size={80} color="white" />
-
-                    <button
-                      onClick={orde}
-                      className=" text-white text-lg font-bold mx-5 bg-blue-600 rounded-lg "
-                    >
-                      Voir plus
-                    </button>
                   </div>
                 </div>
               ) : (
-                <div className="flex flex-col justify-between mx-10 text-white">
-                  {commande.map((item) => (
-                    <div key={item.id}>
-                      <div className="flex flex-row flex-wrap px-1 py-5 mx-2  justify-between">
-                        <div className="flex flex-row items-center w-[80px]">
-                          <div className="centerRow">
-                            <AiOutlineDelete
-                              size={20}
-                              color="red"
-                              className=" mx-1"
-                              onClick={() => {
-                                deleteCommandById(item.id);
-                              }}
-                            />
-                            <h1 className="text-white w-[40px]">
-                              {" "}
-                              {item?.name}
-                            </h1>
-                          </div>
-                        </div>
-                        <div>
-                          <h1 className="text-white "> {item?.price}</h1>
-                        </div>
-                        <div className="flex">
-                          <button className="border-[0.10px] rounded-lg border-x-gray-300 px-2 text-red-600 font-extrabold text-lg">
-                            -
-                          </button>
-                          <h1 className="text-white ">{item?.quantity}</h1>
-                          <button
-                            onClick={() => {
-                              handleUpdateQuantity(item.quantity + 1, item._id);
-                            }}
-                            className="border-[0.10px] rounded-lg border-x-gray-300 px-1 text-green-600 font-extrabold text-lg"
-                          >
-                            +
-                          </button>
-                        </div>
-                        <div>
-                          <h1>{item.total * item.quantity}</h1>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+                <div style={{ gap: 5 }}>
+                  <div className="text-xl text-black font-bold py-5 my-10">
+                    Votre Facture
+                  </div>
+                  <Table
+                    dataSource={commande}
+                    columns={columns}
+                    rowKey="id"
+                    pagination={false}
+                    style={tableStyle}
+                  />
                 </div>
               )}
             </div>
@@ -140,9 +242,7 @@ function Panier() {
                 <h1 className=" border-b-2">Frais de livraison : Fc 2500</h1>
                 <button
                   className=" border-green-600 border-2 bg-green-600 rounded-lg w-[200px] mt-3 text-white px-8 "
-                  onClick={() => {
-                    alert("payement effectuer");
-                  }}
+                  onClick={handleSubmit}
                 >
                   Payer
                 </button>

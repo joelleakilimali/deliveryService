@@ -4,16 +4,84 @@ import Footer from "../components/Footer";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
+import { Table, Drawer, Button } from "antd";
+
+import {
+  adminTab,
+  commandListShop,
+  commandTableColumns,
+  productsListShop,
+  productsTableColumns,
+} from "../data/products";
+import { Tabs } from "antd";
+import CommandTable from "../components/commandes/CommandeDetails";
+import UsersPage from "../components/utilisateurs/users";
+import { userDetails } from "../components/utilisateurs/userDetails";
 
 function Admin() {
   const { data, loading, error } = useFetch("/products");
   const { user, loadingU, errorU } = useFetch("/users");
   console.log("---->>", user.message);
+  let productItems = productsListShop;
 
+  const [visible, setVisible] = useState(false);
+  const [selectedCommand, setSelectedCommand] = useState(null);
+
+  const showDrawer = (record) => {
+    setVisible(true);
+    setSelectedCommand(record);
+  };
+
+  const onClose = () => {
+    setVisible(false);
+    setSelectedCommand(null);
+  };
+
+  const adminTab = [
+    {
+      key: "1",
+      label: "Produiits",
+      children: (
+        <div>
+          <Table columns={productsTableColumns} dataSource={productsListShop} />
+        </div>
+      ),
+    },
+    {
+      key: "2",
+      label: "Commandes en cours ",
+      _children: (
+        <div>
+          <CommandTable commandList={commandListShop} />
+        </div>
+      ),
+      get children() {
+        return this._children;
+      },
+      set children(value) {
+        this._children = value;
+      },
+    },
+    {
+      key: "3",
+      label: "Comptes utilisateurs",
+      _children: (
+        <div>
+          <UsersPage userDetails={userDetails} />
+        </div>
+      ),
+      get children() {
+        return this._children;
+      },
+      set children(value) {
+        this._children = value;
+      },
+    },
+  ];
   return (
     <div className="flex flex-col">
       <Navbar />
-      <div className="flex-1">
+      <div className="">
         <div className="flex  flex-col mt-20 ">
           <div className="mt-10 flex flex-row justify-center">
             <div className="w-80">
@@ -42,8 +110,9 @@ function Admin() {
               </Link>
             </div>
           </div>
-          <div className="flex justify-between mt-20">
-            <div className="px-5">
+          <Tabs defaultActiveKey="1" items={adminTab} />
+
+          {/* <div className="px-5">
               <h2 className="font-bold text-3xl ">Produits disponible</h2>
               <div className="flex justify-between pt-3 ">
                 <h2>Produit</h2>
@@ -97,8 +166,7 @@ function Admin() {
                 <h2>Justine </h2>
                 <h2>56,000</h2>
               </div>
-            </div>
-          </div>
+            </div> */}
         </div>
       </div>
       <div className="mt-12"></div>

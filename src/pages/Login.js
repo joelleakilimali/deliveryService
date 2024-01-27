@@ -1,21 +1,33 @@
-import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
-import Footer from "../components/Footer";
+import React, { useContext, useEffect } from "react";
 import { FaUserCircle } from "react-icons/fa";
-import Navbar from "../components/Navbar";
-import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import {
+  Link,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { AuthContext } from "../context/Authcontext";
-import { useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 import { Context } from "../context/AuthCont";
 function Login() {
   const { Login, isLoading, userInfo, setUserinfo } = useContext(Context);
   const navigate = useNavigate();
+  const [searchPrams] = useSearchParams();
+
   const handleLogin = () => {
     Login();
     navigate("/");
   };
+  useEffect(() => {
+    const email = searchPrams.get("email"),
+      password = searchPrams.get("password");
+    if (email && password) {
+      setUserinfo({ email, password });
+    }
+  }, [searchPrams, setUserinfo]);
+
   return (
     <div>
       <div className="flex flex-col">
@@ -39,6 +51,7 @@ function Login() {
                       placeholder="adresse email"
                       id="username"
                       className="p-2 mx-2 w-[300px] text-lg font-bold"
+                      value={userInfo?.email}
                       onChange={(e) =>
                         setUserinfo({ ...userInfo, email: e.target.value })
                       }
@@ -52,6 +65,7 @@ function Login() {
                       placeholder="Mot de passe"
                       className="p-2 mx-2 w-[300px] text-lg font-bold"
                       id="password"
+                      value={userInfo?.password}
                       onChange={(e) =>
                         setUserinfo({ ...userInfo, password: e.target.value })
                       }

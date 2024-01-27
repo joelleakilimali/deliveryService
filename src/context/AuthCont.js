@@ -52,26 +52,62 @@ const ContextProvider = ({ children }) => {
     localStorage.clear();
     sessionStorage.clear();
   };
+
+  // code for orders
   const addCommande = (body) => {
     const newCommande = [...commande, body];
     setCommande(newCommande);
     console.log(commande);
   };
-
   const deleteCommandById = (itemId) => {
-    console.log(commande);
     const comandUpdate = commande.filter((item) => item.id !== itemId);
-    console.log("new commande", comandUpdate);
-    setCommande("--->", comandUpdate);
+    setCommande(comandUpdate);
   };
+
   const updateItemQuantity = (itemId, newQuantity) => {
     const updatedBasket = commande.map((item) => {
       if (item.id === itemId) {
+        console.log(` itemid : ${itemId} quantity: ${newQuantity}`);
         return { ...item, quantity: newQuantity };
       }
       return item;
     });
     setCommande(updatedBasket);
+  };
+
+  const makeOrder = async (userId, body) => {
+    const totalPrice = body.products.reduce((total, product) => {
+      return total + product.price * product.quantity;
+    }, 0);
+    const newBody = [...commande, totalPrice];
+    console.log("total priceincludedd", commande);
+    await axios
+      .post(`http://localhost:3001/orders/make`, { userId, body })
+
+      .then((res) => {
+        const newOrder = res.data;
+
+        //setCommande(newOrder);
+
+        console.log(" votre commande-->", newOrder);
+        //setcom(res.data);
+      })
+      .catch((error) => {
+        if (error.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          console.log("out of range");
+          console.log("Response data:", error.response.data);
+          console.log("Response status:", error.response.status);
+          console.log("Response headers:", error.response.headers);
+        } else if (error.request) {
+          // The request was made but no response was received
+          console.log("Request:", error.request);
+        } else {
+          // Something else happened in making the request that triggered an error
+          console.log(" something else Error:", error.message);
+        }
+      });
   };
 
   //
@@ -92,6 +128,7 @@ const ContextProvider = ({ children }) => {
         commande,
         deleteCommandById,
         updateItemQuantity,
+        makeOrder,
       }}
     >
       {children}
