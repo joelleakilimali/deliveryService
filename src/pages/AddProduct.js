@@ -5,7 +5,9 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import FileBase from "react-file-base64";
 import { ToastContainer, toast } from "react-toastify";
-
+import AdminMenu from "../components/AdminMenu/AdminMenu";
+import { Button, Form, Input, InputNumber, Select, Upload } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
 function AddProduct() {
   const addProduct = async () => {
     await axios
@@ -38,31 +40,80 @@ function AddProduct() {
       <Navbar />
       <div className="  flex-1">
         <div className="flex  flex-col mt-20 ">
-          <div className="mt-10 flex flex-row ">
-            <div className=" adminbox flex flex-col  border-2  border-gray-100 p-5 m-5 w-[25%]">
-              <h2>Produits</h2>
-
-              <h2 className="pt-2">100</h2>
-            </div>
-            <div className=" adminbox flex flex-col  border-2  border-gray-100 p-5 m-5 w-[25%]">
-              <div>commandes</div>
-              <h2 className="pt-2">100</h2>
-            </div>
-            <div className="adminbox flex flex-col  border-2  border-gray-100 p-5 m-5 w-[25%]">
-              <div>Utilisateurs</div>
-              <h2 className="pt-2">100</h2>
-            </div>
-            <div className=" adminbox flex flex-col   border-2  border-gray-100 p-5 m-5 w-[25%]">
-              <div>Utilisateurs</div>
-              <h2 className="pt-2">100</h2>
-            </div>
-          </div>
-          <div className="flex justify-between mt-20 bg-gradient-to-r from-sky-900 to-red-900">
+          <AdminMenu />
+          <div className="flex justify-between mt-3 bg-gradient-to-r from-sky-900 to-red-900">
             <div className="px-5 text-white">
               <h2 className="font-bold text-3xl pt-5 ">
                 Ajouter nouveaux produits
               </h2>
-              <div className="flex justify-evenly m-10">
+              <div
+                style={{
+                  color: "white",
+                  gap: "2rem",
+                  padding: "20px",
+                }}
+              >
+                <Form
+                  labelCol={{
+                    span: 80,
+                  }}
+                  wrapperCol={{
+                    span: 100,
+                  }}
+                  layout="horizontal"
+                  initialValues={{
+                    size: "",
+                  }}
+                  style={{
+                    maxWidth: 800,
+                    padding: "20px",
+                  }}
+                >
+                  <Form.Item label="Nom">
+                    <Input />
+                  </Form.Item>
+                  <Form.Item label="Prix">
+                    <Input />
+                  </Form.Item>
+                  <Form.Item label="Super Marche">
+                    <Select>
+                      <Select.Option value="demo">Demo</Select.Option>
+                    </Select>
+                  </Form.Item>
+
+                  <Form.Item label="Quantite">
+                    <InputNumber />
+                  </Form.Item>
+                  <Form.Item
+                    label="Upload"
+                    valuePropName="fileList"
+                    // getValueFromEvent={normFile}
+                  >
+                    <Upload action="/upload.do" listType="picture-card">
+                      <button
+                        style={{
+                          border: 0,
+                          background: "none",
+                        }}
+                        type="button"
+                      >
+                        <PlusOutlined />
+                        <div
+                          style={{
+                            marginTop: 8,
+                          }}
+                        >
+                          Upload
+                        </div>
+                      </button>
+                    </Upload>
+                  </Form.Item>
+                  <Form.Item>
+                    <Button>Enregistrer</Button>
+                  </Form.Item>
+                </Form>
+              </div>
+              {/* <div className="flex justify-evenly ">
                 <div className="flex w-[100%] pt-3 ">
                   <div className="input ">
                     <div className="input">
@@ -135,7 +186,7 @@ function AddProduct() {
                     </button>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

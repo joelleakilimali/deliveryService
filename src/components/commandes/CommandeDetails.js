@@ -53,6 +53,11 @@ const CommandTable = ({ commandList }) => {
       dataIndex: "adresseLivraison",
       key: "adresseLivraison",
     },
+    {
+      title: "Payement Effectué",
+      dataIndex: "isPaid",
+      key: "isPaid",
+    },
 
     {
       title: "Apercu global",
@@ -95,6 +100,9 @@ const CommandTable = ({ commandList }) => {
               </p>
               <p style={{ padding: "10px 0 " }}>
                 Super Marche: {selectedCommand.market}
+              </p>
+              <p style={{ padding: "10px 0 " }}>
+                Payment Effectué: {selectedCommand.isPaid}
               </p>
             </div>
             <div style={{ padding: "20px 0 " }}>

@@ -5,7 +5,6 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
 import { Table, Drawer, Button } from "antd";
-
 import {
   adminTab,
   commandListShop,
@@ -17,6 +16,7 @@ import { Tabs } from "antd";
 import CommandTable from "../components/commandes/CommandeDetails";
 import UsersPage from "../components/utilisateurs/users";
 import { userDetails } from "../components/utilisateurs/userDetails";
+import AdminMenu from "../components/AdminMenu/AdminMenu";
 
 function Admin() {
   const { data, loading, error } = useFetch("/products");
@@ -78,16 +78,18 @@ function Admin() {
       },
     },
   ];
+
   return (
     <div className="flex flex-col">
       <Navbar />
       <div className="">
         <div className="flex  flex-col mt-20 ">
-          <div className="mt-10 flex flex-row justify-center">
+          <AdminMenu />
+          {/* <div className="mt-10 flex flex-row justify-center">
             <div className="w-80">
               <Link to="/admin/addProduct">
                 <div className=" adminbox flex flex-col  border-2  border-gray-100 p-5 m-5">
-                  <h2>Produits</h2>
+                  <h2>Ajouter Un Article</h2>
 
                   <h2 className="pt-2">{data.count}</h2>
                 </div>
@@ -96,20 +98,20 @@ function Admin() {
             <div className="w-80">
               <Link to="/admin/addProduct">
                 <div className=" adminbox flex flex-col  border-2  border-gray-100 p-5 m-5 ">
-                  <div>commandes</div>
-                  <h2 className="pt-2">100</h2>
+                  <div>Super Marché</div>
+                  <h2 className="pt-2">7</h2>
                 </div>
               </Link>
             </div>
             <div className="w-80">
               <Link to="/admin/addProduct">
                 <div className="adminbox flex flex-col  border-2  border-gray-100 p-5 m-5 ">
-                  <div>Utilisateurs</div>
+                  <div>Bilan</div>
                   <h2 className="pt-2">100</h2>
                 </div>
               </Link>
             </div>
-          </div>
+          </div> */}
           <Tabs defaultActiveKey="1" items={adminTab} />
 
           {/* <div className="px-5">

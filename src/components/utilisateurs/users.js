@@ -110,10 +110,6 @@ const UsersPage = ({ userDetails }) => {
                 />
                 {/* {selectedCommand.products.map((product)=>{
                     <div>
-
-
-
-
                     </div>
                 })} */}
               </div>

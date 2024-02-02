@@ -10,11 +10,12 @@ import Admin from "./pages/Admin";
 import AddProduct from "./pages/AddProduct";
 import ContextProvider from "./context/AuthCont";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
-
+import ReportPage from "./pages/Admin/report/Report";
+import "../src/components/footer.css";
 const queryClient = new QueryClient();
 function App() {
   return (
-    <div className="App">
+    <div className="fullbody">
       <BrowserRouter>
         <ContextProvider>
           <QueryClientProvider client={queryClient}>
@@ -26,6 +27,7 @@ function App() {
               <Route exact path="/panier" element={<Panier />} />
               <Route exact path="/admin" element={<Admin />} />
               <Route exact path="/admin/addProduct" element={<AddProduct />} />
+              <Route exact path="/admin/report" element={<ReportPage />} />
             </Routes>
           </QueryClientProvider>
         </ContextProvider>

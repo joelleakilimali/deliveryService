@@ -43,6 +43,7 @@ export const commandListShop = [
     contact: "+812157215",
     adresseLivraison: "macampagne , plaine 1 num 31",
     market: "Shoprite",
+    isPaid: "OK",
     products: [
       { product: "parfums", quantity: 3, totalPrice: 500 },
       { product: "Pain complet", quantity: 3, totalPrice: 500 },
@@ -58,6 +59,9 @@ export const commandListShop = [
     key: "id",
     contact: "+812157215",
     adresseLivraison: "macampagne , plaine 1 num 31",
+    isPaid: "OK",
+    market: "GG Mart",
+
     products: [
       { product: "Omo", quantity: 3, totalPrice: 500 },
       { product: "Jus Ceres", quantity: 3, totalPrice: 500 },
